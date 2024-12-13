@@ -1,0 +1,407 @@
+{
+    "privateLimitedCompany": {
+      "title": "Private Limited Company Registration",
+      "image": "/images.jpg",
+      "plans": {
+        "Basic Plan": {
+          "marketPrice": 1000,
+          "discount": 200,
+          "ourPrice": 800,
+          "gst": 144,
+          "govFee": 50,
+          "description": [
+            "Basic feature 1",
+            "Basic feature 2",
+            "Basic feature 3",
+            "Basic feature 4"
+          ]
+        },
+        "Standard Plan": {
+          "marketPrice": 2000,
+          "discount": 400,
+          "ourPrice": 1600,
+          "gst": 288,
+          "govFee": 100,
+          "description": [
+            "Standard feature 1",
+            "Standard feature 2",
+            "Standard feature 3",
+            "Standard feature 4",
+            "Standard feature 5"
+          ]
+        },
+        "Premium Plan": {
+          "marketPrice": 3000,
+          "discount": 600,
+          "ourPrice": 2400,
+          "gst": 432,
+          "govFee": 150,
+          "description": [
+            "Premium feature 1",
+            "Premium feature 2",
+            "Premium feature 3",
+            "Premium feature 4",
+            "Premium feature 5",
+            "Premium feature 6"
+          ]
+        }
+      },
+      "mainContent": {
+        "heading": "Private Limited Company Registration",
+        "paragraphs": [
+          "A Private Limited Company is the most popular form of business structure in India, offering limited liability to its shareholders and enabling separate legal identity.",
+          "Registering your private limited company is the first step towards formalizing your business and ensuring its legal recognition."
+        ],
+        "subHeadings": {
+          "title1": "Key Features",
+          "text1": "Private limited companies enjoy limited liability protection, easier access to funding, and perpetual succession.",
+          "title2": "Laws Governing Private Limited Companies",
+          "text2": "In India, private limited companies are governed by the Companies Act, 2013."
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    "publicLimitedCompany": {
+      "title": "Public Limited Company Registration",
+      "image": "/public.png",
+      "plans": {
+        "Basic Plan": {
+          "marketPrice": 1500,
+          "discount": 300,
+          "ourPrice": 1200,
+          "gst": 216,
+          "govFee": 60,
+          "description": [
+            "Public Basic feature 1",
+            "Public Basic feature 2",
+            "Public Basi"
+          ]
+        },
+        "Standard Plan": {
+          "marketPrice": 2500,
+          "discount": 500,
+          "ourPrice": 2000,
+          "gst": 360,
+          "govFee": 120,
+          "description": [
+            "Public Standard feature 1",
+            "Public Standard feature 2",
+            "Publiture 4"
+          ]
+        },
+        "Premium Plan": {
+          "marketPrice": 3500,
+          "discount": 700,
+          "ourPrice": 2800,
+          "gst": 504,
+          "govFee": 180,
+          "description": [
+            "Public Premium feature 1",
+            "Public Premium feature 2",
+            "Public Premium feature 3",
+            "Public Premium feature 4",
+            "Public Premium feature 5"
+          ]
+        }
+      },
+      "mainContent": {
+        "heading": "Public Limited Company Registration",
+        "paragraphs": [
+          "A Public Limited Company can raise funds from the public at large, making it suitable for large-scale ventures.",
+          "By registering your public limited company, you ensure transparency, trust, and easier access to capital."
+        ],
+        "subHeadings": {
+          "title1": "Key Features",
+          "text1": "Public limited companies have the advantage of issuing shares to the general public and can raise large amounts of capital.",
+          "title2": "Laws Governing Public Limited Companies",
+          "text2": "Public limited companies in India are governed by the Companies Act, 2013, with stringent compliance and disclosure requirements."
+        }
+      }
+    },
+
+
+
+
+    "onePersonCompany": {
+      "title": "One Person Company Registration",
+      "image": "/services6.png",
+      "plans": {
+        "Basic Plan": {
+          "marketPrice": 800,
+          "discount": 100,
+          "ourPrice": 700,
+          "gst": 126,
+          "govFee": 40,
+          "description": [
+            "OPC Basic feature 1",
+            "OPC Basic feature 2",
+            "OPC Basic feature 3"
+          ]
+        },
+        "Standard Plan": {
+          "marketPrice": 1800,
+          "discount": 300,
+          "ourPrice": 1500,
+          "gst": 270,
+          "govFee": 80,
+          "description": [
+            "OPC Standard feature 1",
+            "OPC Standard feature 2",
+            "OPC Standard feature 3",
+            "OPC Standard feature 4"
+          ]
+        },
+        "Premium Plan": {
+          "marketPrice": 2800,
+          "discount": 500,
+          "ourPrice": 2300,
+          "gst": 414,
+          "govFee": 120,
+          "description": [
+            "OPC Premium feature 1",
+            "OPC Premium feature 2",
+            "OPC Premium feature 3",
+            "OPC Premium feature 4",
+            "OPC Premium feature 5"
+          ]
+        }
+      },
+      "mainContent": {
+        "heading": "One Person Company Registration",
+        "paragraphs": [
+          "A One Person Company (OPC) allows a single entrepreneur to enjoy the benefits of a company structure, such as separate legal identity and limited liability.",
+          "OPC registration simplifies the process for solo entrepreneurs who want corporate status."
+        ],
+        "subHeadings": {
+          "title1": "Key Features",
+          "text1": "OPCs combine the flexibility of a sole proprietorship with the advantages of a company.",
+          "title2": "Laws Governing OPCs",
+          "text2": "OPCs are governed by the Companies Act, 2013, making it simple to start and manage a one-person enterprise."
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    "ngoSection8": {
+      "title": "NGO (Section 8) Registration",
+      "image": "/services7.png",
+      "plans": {
+        "Basic Plan": {
+          "marketPrice": 2000,
+          "discount": 300,
+          "ourPrice": 1700,
+          "gst": 306,
+          "govFee": 100,
+          "description": [
+            "NGO Basic feature 1",
+            "NGO Basic feature 2",
+            "NGO Basic feature 3",
+            "NGO Basic feature 4"
+          ]
+        },
+        "Standard Plan": {
+          "marketPrice": 3000,
+          "discount": 500,
+          "ourPrice": 2500,
+          "gst": 450,
+          "govFee": 150,
+          "description": [
+            "NGO Standard feature 1",
+            "NGO Standard feature 2",
+            "NGO Standard feature 3",
+            "NGO Standard feature 4",
+            "NGO Standard feature 5"
+          ]
+        },
+        "Premium Plan": {
+          "marketPrice": 4000,
+          "discount": 700,
+          "ourPrice": 3300,
+          "gst": 594,
+          "govFee": 200,
+          "description": [
+            "NGO Premium feature 1",
+            "NGO Premium feature 2",
+            "NGO Premium feature 3",
+            "NGO Premium feature 4",
+            "NGO Premium feature 5",
+            "NGO Premium feature 6"
+          ]
+        }
+      },
+      "mainContent": {
+        "heading": "NGO (Section 8) Registration",
+        "paragraphs": [
+          "Section 8 Companies are formed for promoting charitable objectives like education, religion, art, and culture.",
+          "Registering your NGO ensures credibility, donations eligibility, and potential tax benefits."
+        ],
+        "subHeadings": {
+          "title1": "Key Features",
+          "text1": "NGOs do not distribute profits; instead, they reinvest earnings into their objectives.",
+          "title2": "Laws Governing Section 8 Companies",
+          "text2": "NGOs (Section 8) are governed by the Companies Act, 2013, offering benefits and exemptions to charitable organizations."
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+
+    "llpRegistration": {
+      "title": "LLP Registration",
+      "image": "/images.jpg",
+      "plans": {
+        "Basic Plan": {
+          "marketPrice": 1200,
+          "discount": 200,
+          "ourPrice": 1000,
+          "gst": 180,
+          "govFee": 70,
+          "description": [
+            "LLP Basic feature 1",
+            "LLP Basic feature 2",
+            "LLP Basic feature 3"
+          ]
+        },
+        "Standard Plan": {
+          "marketPrice": 2200,
+          "discount": 400,
+          "ourPrice": 1800,
+          "gst": 324,
+          "govFee": 140,
+          "description": [
+            "LLP Standard feature 1",
+            "LLP Standard feature 2",
+            "LLP Standard feature 3",
+            "LLP Standard feature 4"
+          ]
+        },
+        "Premium Plan": {
+          "marketPrice": 3200,
+          "discount": 600,
+          "ourPrice": 2600,
+          "gst": 468,
+          "govFee": 210,
+          "description": [
+            "LLP Premium feature 1",
+            "LLP Premium feature 2",
+            "LLP Premium feature 3",
+            "LLP Premium feature 4",
+            "LLP Premium feature 5"
+          ]
+        }
+      },
+      "mainContent": {
+        "heading": "LLP Registration",
+        "paragraphs": [
+          "A Limited Liability Partnership (LLP) offers the flexibility of a partnership with the added advantage of limited liability for its partners.",
+          "Registering your LLP provides a corporate structure without the complexities of a private limited company."
+        ],
+        "subHeadings": {
+          "title1": "Key Features",
+          "text1": "LLPs protect partners from the debts of the business, ensuring their personal assets remain safe.",
+          "title2": "Laws Governing LLPs",
+          "text2": "LLPs in India are governed by the Limited Liability Partnership Act, 2008."
+        }
+      }
+    },
+
+
+
+
+
+
+
+
+
+
+    "partnershipFirm": {
+      "title": "Partnership Firm Registration",
+      "image": "/images.jpg",
+      "plans": {
+        "Basic Plan": {
+          "marketPrice": 1000,
+          "discount": 200,
+          "ourPrice": 800,
+          "gst": 144,
+          "govFee": 50,
+          "description": [
+            "Basic feature 1",
+            "Basic feature 2",
+            "Basic feature 3",
+            "Basic feature 4"
+          ]
+        },
+        "Standard Plan": {
+          "marketPrice": 2000,
+          "discount": 400,
+          "ourPrice": 1600,
+          "gst": 288,
+          "govFee": 100,
+          "description": [
+            "Standard feature 1",
+            "Standard feature 2",
+            "Standard feature 3",
+            "Standard feature 4",
+            "Standard feature 5"
+          ]
+        },
+        "Premium Plan": {
+          "marketPrice": 3000,
+          "discount": 600,
+          "ourPrice": 2400,
+          "gst": 432,
+          "govFee": 150,
+          "description": [
+            "Premium feature 1",
+            "Premium feature 2",
+            "Premium feature 3",
+            "Premium feature 4",
+            "Premium feature 5",
+            "Premium feature 6"
+          ]
+        }
+      },
+      "mainContent": {
+        "heading": "Partnership Firm Registration",
+        "paragraphs": [
+          "A partnership firm is a popular choice among entrepreneurs due to its simplicity and flexibility.",
+          "Registering your partnership firm is the first step towards formalizing your partnership and ensuring its legal recognition."
+        ],
+        "subHeadings": {
+          "title1": "Partnership Firms",
+          "text1": "A partnership is formed when two or more individuals come together to run a business and share profits.",
+          "title2": "Law Governing the Partnership Firms Registration",
+          "text2": "Partnership firms in India are governed by the Indian Partnership Act of 1932."
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,64 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 100%;
+  text-align: center;
+}
+
+/* Light and Dark Mode Styles */
+body {
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Global dark mode text styles */
+body.dark-mode {
+  background-color: #121212;
+  color: white; /* Default text color for dark mode */
+}
+
+body.dark-mode * {
+  color: white; /* Ensure all child elements inherit white text */
+}
+
+body.dark-mode a {
+  color: #90caf9; /* Slightly blue links for visibility */
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2d3748; /* Darker background */
+  color: white; /* White text */
+  border: 1px solid #444; /* Optional: Add borders for contrast */
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #b0b0b0; /* Light gray placeholder text */
+}
+
+/* Override specific classes if needed */
+body.dark-mode .material-icons {
+  color: white;
+}
+
+/* Name shadow white in dark mode */
+body.dark-mode .shadow-text {
+  color: white; /* Ensures the text color is white */
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2); /* White glow shadow */
+}
+
+/* Optional: Use this for stronger shadow effects */
+body.dark-mode .shadow-text-strong {
+  color: white;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6), 0px 0px 12px rgba(255, 255, 255, 0.8);
+}
