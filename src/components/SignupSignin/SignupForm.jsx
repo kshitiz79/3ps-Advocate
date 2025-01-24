@@ -1,115 +1,175 @@
 import React, { useState } from "react";
+import {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+} from "./../../redux/features/auth/authapi";
+import { useDispatch } from "react-redux";
+import { setUser } from "./../../redux/features/auth/authslice";
+import { useNavigate } from "react-router-dom";
 
 const SignInSignUp = () => {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
 
-  return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gray-100 overflow-hidden">
-      {/* Main Container */}
-      <div className="relative w-full md:max-w-5xl h-[500px] bg-white shadow-2xl rounded-lg overflow-hidden">
-        {/* Gradient Circle */}
-        <div
-          className={`absolute top-[-100%] md:top-[-50%] right-[50%] w-[2000px] h-[2000px] rounded-full bg-gradient-to-r from-blue-500 to-blue-400 backdrop-blur-lg transition-all duration-1000 ease-in-out ${
-            isSignUpMode ? "translate-x-full" : ""
-          }`}
-          style={{ zIndex: 5 }}
-        ></div>
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-        {/* Forms Container */}
-        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center transition-all duration-700 ease-in-out">
-          {/* Sign In Form */}
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const [registerUser] = useRegisterUserMutation();
+  const [loginUser] = useLoginUserMutation();
 
-        
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-          <form  className={`absolute right-0 w-2/5 flex flex-col space-y-6 text-center p-8 transition-transform duration-700 ease-in-out ${
-              isSignUpMode ? "translate-x-[100%]" : "translate-x-0"
-            }`}
-            style={{ zIndex: 10 }}>
-         
-            <h2 className="text-3xl font-bold text-gray-700">Sign In</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              className="w-full p-3 bg-gray-100 rounded-full outline-none shadow-md"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-3 bg-gray-100 rounded-full outline-none shadow-md"
-            />
-            <button className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 transition duration-300">
-              Login
-            </button>
-          </form>
+  // Handle sign up
+// FIX handleSignUp:
+const handleSignUp = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await registerUser(formData).unwrap();
+    dispatch(setUser({ user: response.user, token: response.token }));
+    alert("Registration Successful!");
 
-          {/* Sign Up Form */}
+    // Navigate based on role
+    const role = response.user.role;
+    navigate(role === "admin" ? "/admin-dashboard" : "/user-dashboard");
+  } catch (error) {
+    alert(error?.data?.message || "Registration Failed!");
+  }
+};
+
   
-           
-          
-            <form className={`absolute left-8 w-2/5 flex flex-col space-y-6 text-center p-8 transition-transform duration-700 ease-in-out ${
-              isSignUpMode ? "translate-x-100%" : "-translate-x-[100%]"
-            }`}
-            style={{ zIndex: 10 }}
-            >
-            <h2 className="text-3xl font-bold text-gray-700  ">Sign Up</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              className="w-full p-2 bg-gray-100 rounded-full outline-none flex  shadow-md"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-            className="w-full p-2 bg-gray-100 rounded-full outline-none shadow-md"
-            />
-            
-            <input
-              type="password"
-              placeholder="Password"
-            className="w-full p-2 bg-gray-100 rounded-full outline-none shadow-md"
-            />
-            <button className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 transition duration-300 ">
-              Sign Up
-            </button>
+const handleSignIn = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await loginUser({
+      email: formData.email,
+      password: formData.password,
+    }).unwrap();
+
+    console.log('Login response:', response);
+
+    // Save token in localStorage
+    localStorage.setItem('authToken', response.token);
+
+    // Dispatch user data to Redux store
+    dispatch(setUser({ user: response.user, token: response.token }));
+
+    alert('Login Successful!');
+
+    // Navigate based on role
+    const role = response.user.role;
+    navigate(role === 'admin' ? '/admin-dashboard' : '/user-dashboard');
+  } catch (error) {
+    alert(error?.data?.message || 'Login Failed!');
+  }
+};
+
+  
+  
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {/* Container */}
+      <div className="relative w-full max-w-md h-[480px] overflow-hidden rounded-xl shadow-xl border border-gray-200 bg-white">
+        {/* 
+          A wide "slides wrapper" that transitions left or right 
+          to show Sign In (left) or Sign Up (right).
+        */}
+        <div
+          className={`absolute top-0 left-0 w-[200%] h-full transition-transform duration-700 ease-in-out ${
+            isSignUpMode ? "-translate-x-1/2" : ""
+          }`}
+        >
+          {/* Sign In Slide */}
+          <div className="w-1/2 float-left h-full flex flex-col items-center justify-center p-6 bg-white">
+            <h2 className="text-2xl font-bold mb-4">Sign In</h2>
+            <form onSubmit={handleSignIn} className="space-y-4 w-3/4">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-3 bg-gray-100 rounded"
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className="w-full p-3 bg-gray-100 rounded"
+              />
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              >
+                Sign In
+              </button>
             </form>
-          </div>
-       
-
-        {/* Panels */}
-        <div className="absolute top-0 left-0 w-full h-full flex">
-          {/* Left Panel */}
-          <div
-            className={`w-1/2 flex flex-col justify-center items-center text-center p-8 transition-transform duration-700 ${
-              isSignUpMode ? "-translate-x-full" : "translate-x-0"
-            }`}
-            style={{ zIndex: 8 }}
-          >
-            <h3 className="text-2xl font-bold mb-4 text-white">New Here?</h3>
-            <p className="mb-6 text-white">Join us and start your journey today.</p>
-            <button
-              className="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-blue-500 transition duration-300"
-              onClick={() => setIsSignUpMode(true)}
-            >
-              Sign Up
-            </button>
+            <p className="mt-6">
+              New here?{" "}
+              <button
+                onClick={() => setIsSignUpMode(true)}
+                className="text-blue-600 hover:underline"
+              >
+                Create an account
+              </button>
+            </p>
           </div>
 
-          {/* Right Panel */}
-          <div
-            className={`w-1/2 flex flex-col justify-center items-center text-center p-8 transition-transform duration-700 ${
-              isSignUpMode ? "translate-x-0" : "translate-x-full"
-            }`}
-            style={{ zIndex: 8 }}
-          >
-            <h3 className="text-2xl font-bold mb-4 text-white">One of Us?</h3>
-            <p className="mb-6 text-white">Sign in and continue your journey with us.</p>
-            <button
-              className="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-blue-500 transition duration-300"
-              onClick={() => setIsSignUpMode(false)}
-            >
-              Sign In
-            </button>
+          {/* Sign Up Slide */}
+          <div className="w-1/2 float-left h-full flex flex-col items-center justify-center p-6 bg-white">
+            <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
+            <form onSubmit={handleSignUp} className="space-y-4 w-3/4">
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={formData.username}
+                onChange={handleInputChange}
+                className="w-full p-3 bg-gray-100 rounded"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full p-3 bg-gray-100 rounded"
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className="w-full p-3 bg-gray-100 rounded"
+              />
+              <button
+                type="submit"
+                className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+              >
+                Sign Up
+              </button>
+            </form>
+            <p className="mt-6">
+              Already have an account?{" "}
+              <button
+                onClick={() => setIsSignUpMode(false)}
+                className="text-blue-600 hover:underline"
+              >
+                Sign In
+              </button>
+            </p>
           </div>
         </div>
       </div>

@@ -13,32 +13,37 @@ const AboutUs = () => {
         Creative Solutions for Legal Problems
       </p>
     </div>
-    <div className="flex flex-col md:flex-row items-center gap-20 py-12  shadow-all 
-border border-white rounded-lg ">
+    <div className="flex flex-col md:flex-row items-center gap-20 py-12 h shadow-all 
+border border-white rounded-lg  ">
       {/* Text Content */}
-      <div className=" rounded-lg p-8 md:w-1/2 mx-auto">
-  <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6 text-center">
-    Transforming Ideas into Legal Success
+      <div className=" rounded-lg px-8 py-3 md:w-4/6 mx-auto">
+  <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-10 text-center">
+    Transforming Ideas into  <br/>Legal Success
   </h3>
-  <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6 text-justify">
-    The <span className="font-semibold text-gray-800">3P’s Advocates & IP Attorneys</span> began their journey with a mission to provide unparalleled legal services under the ethos of 
-    <span className="font-bold text-gray-900"> “Plea”- “Pledge”- “Pleadings”</span>. 
-    We specialize in Intellectual Property Rights and excel in contentious IPR matters, including filings for Patents, Trademarks, and Copyrights.
-  </p>
-  <p className="text-gray-600 text-base lg:text-lg leading-relaxed text-justify">
-    Headquartered in New Delhi, our dynamic team of seasoned advocates brings over a decade of expertise in IP law. We’re committed to delivering tailor-made legal solutions aligned with your commercial objectives.
+  
+  <p className="text-gray-600 text-base lg:text-base leading-relaxed text-justify">
+  The 3P’s Advocates & IP Attorneys has started their journey with a motive to serve best to their client through the motto of  <span className="font-bold text-gray-900"> “Plea”- “Pledge”- “Pleadings”</span>.  and have focussed their primary practice area in the field of Intellectual Property Rights and have been involved in handling contentious IPR matters, with a vast number of filings in Patents, Trademarks, and Copyrights. 
+
+The 3P’s Advocates & IP Attorneys is a full-service Law Firm having its head office in the capital city New Delhi and has started its operations with an energetic team of dynamic Advocates holding experiences of over 10+ years in IP practice.
+
+We advise and guide global clients at various stages of IP life-cycle vis-à-vis searching, filing, prosecution, opposition, show cause hearings, and other stages of litigation. We have been assisting global clients in formulating Intellectual property-related strategies, settling negotiations, enforcing and procurement of IP rights, managing IP Transactions, and monetizing.
+
+The firm is managed by six experienced professionals and over ten associates having diverse domain expertise and represent matters before various Patent Offices, Trade Mark Registries, and at all levels of Courts (District Courts, High Courts, and the Supreme Court).
+
+We believe in providing customized solutions to our clients and a comprehensive understanding of the needs to meet the commercial goals.
   </p>
   
 </div>
 
       {/* Image */}
-      <div className="md:w-2/6 mt-8 md:mt-0">
-        <img
-          src="./aboutus.png"
-          alt="Legal Services"
-          className="w-full rounded-lg  "
-        />
-      </div>
+      <div className="md:w-2/6 mt-8 md:mt-0 ">
+  <img
+    src="./aboutus.png"
+    alt="Legal Services"
+    className="w-5/6 rounded-full lg:ml-7 "
+  />
+</div>
+
     </div>
   </div>
 </section>

@@ -8,21 +8,21 @@ const AboutUs = () => {
       description:
         "Dedicated to representing clients with honesty and diligence, ensuring their voices are heard.",
       skills: ["Client Advocacy", "Legal Consultation", "IP Expertise"],
-      image: "/images/plea.jpg", // Replace with the actual image path
+      image: "/Images2/peal6.png", // Replace with the actual image path
     },
     {
       title: "Pledge",
       description:
         "A promise to provide unparalleled service with a focus on trust, transparency, and excellence.",
       skills: ["Commitment", "Ethics", "Transparency"],
-      image: "/images/pledge.jpg", // Replace with the actual image path
+      image: "/Images2/peal7.png", // Replace with the actual image path
     },
     {
       title: "Pleadings",
       description:
         "Exceptional skills in drafting and presenting legal arguments for achieving favorable outcomes.",
       skills: ["Drafting Documents", "Court Advocacy", "Dispute Resolution"],
-      image: "/images/pleadings.jpg", // Replace with the actual image path
+      image: "/Images2/peal8.png", // Replace with the actual image path
     },
   ];
 
@@ -37,7 +37,7 @@ const AboutUs = () => {
               className=" shadow-lg rounded-lg overflow-hidden border border-gray-200"
             >
               {/* Circular Image */}
-              <div className="flex justify-center -mt-12">
+              <div className="flex justify-center ">
                 <div className="h-24 w-24 rounded-full overflow-hidden border-4 border-white shadow-md">
                   <img
                     src={card.image}

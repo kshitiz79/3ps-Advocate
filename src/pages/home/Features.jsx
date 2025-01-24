@@ -3,67 +3,61 @@ import React from "react";
 const Features = () => {
   const features = [
     {
-      title: "Billing & Invoicing",
-      description:
-        "Empower your sales teams to easily create estimates and invoices. Track invoice delivery and opens by customers.",
-      icon: "📄", // Replace this with any SVG or icon library
+      "title": "Company Registration",
+      "description": "The primary method through which business owners form or incorporate their firm. Choose the best-suited type of company registration from OPC, Private Limited, LLP, and others.",
+      "icon": "🏢"
     },
     {
-      title: "GST Return Filing",
-      description:
-        "Integrated GST solution to help businesses manage their invoicing, GST Invoicing, Payment Reconciliation and GST Filing on a single platform.",
-      icon: "🧾",
+      "title": "GST Registration",
+      "description": "Get a GSTIN for your business. Register for Goods and Services Tax to comply with tax laws and enable smooth business operations.",
+      "icon": "🧾"
     },
     {
-      title: "HR & Payroll",
-      description:
-        "Comprehensive HR cloud-based suite to manage all aspects of employee management like onboarding, attendance, payroll, compliance, and exit.",
-      icon: "👥",
+      "title": "Digital Signature Certificate",
+      "description": "Authenticate documents digitally with DSC Class 2 or Class 3. Ensure security, legality, and efficiency for e-signatures.",
+      "icon": "🔏"
     },
     {
-      title: "GST e-Invoicing",
-      description:
-        "Scalable GST eInvoice stack with integrated payment links and powerful reconciliation features.",
-      icon: "🚀",
+      "title": "FSSAI Registration",
+      "description": "Mandatory for food businesses to ensure compliance with food safety standards. Obtain a 14-digit registration/license number.",
+      "icon": "🍴"
     },
     {
-      title: "Financial Statements",
-      description:
-        "Streamline your finances effortlessly and make quicker decisions with powerful financial reports on demand.",
-      icon: "📊",
+      "title": "Trade License",
+      "description": "Necessary for operating businesses like cafes, restaurants, or public entertainment establishments. Ensure legal compliance.",
+      "icon": "🛠️"
     },
     {
-      title: "Invoice & Collect",
-      description:
-        "Get a payment gateway for your business and accept credit card, debit card, netbanking and UPI payments seamlessly.",
-      icon: "💰",
+      "title": "ISO Certification",
+      "description": "Obtain ISO certification to align business processes with international standards, boost efficiency, and gain customer trust.",
+      "icon": "📜"
     },
     {
-      title: "Connected Banking",
-      description:
-        "Access your business bank account from LEDGERS and simplify banking.",
-      icon: "🏦",
+      "title": "Import Export Code",
+      "description": "Mandatory for businesses engaging in international trade. Expand your market reach with a simple, hassle-free registration process.",
+      "icon": "🌍"
     },
     {
-      title: "Android & iOS App",
-      description:
-        "Keep accounting and financial information at your fingertips. Send estimates, invoices, and collect payments from anywhere.",
-      icon: "📱",
+      "title": "Compliance Services",
+      "description": "End-to-end services for TDS filing, GST filing, director changes, LLP agreements, ITR filing, and more.",
+      "icon": "✔️"
     },
     {
-      title: "Employee Attendance",
-      description:
-        "Switch to a facial recognition-based attendance solution with geolocation tracking features.",
-      icon: "✅",
+      "title": "Startup Registration",
+      "description": "Get recognized under the Startup India initiative to access tax benefits, IPR fast-tracking, and easier compliance.",
+      "icon": "🚀"
     },
-  ];
+    
+  ]
+  
 
   return (
     <section className="py-16  dark:bg-gray-900 transition duration-300">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">
-          Cloud Accounting & Compliance Platform
-        </h2>
+      <h2 className="text-4xl font-semibold text-center mb-12 text-gray-800 dark:text-gray-200 uppercase">
+  Streamline Your Accounting & Compliance Effortlessly
+</h2>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (

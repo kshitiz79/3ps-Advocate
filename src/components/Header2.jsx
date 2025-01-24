@@ -2,20 +2,34 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb as regularLightbulb } from "@fortawesome/free-regular-svg-icons";
 import { faLightbulb as solidLightbulb } from "@fortawesome/free-solid-svg-icons";
-import logo from "/logo.png";
-import LinkButton from  "./SignupSignin/SignupSignin"
 
+import LinkButton from  "./SignupSignin/LinkButton"
+import { Link, useNavigate } from "react-router-dom";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+
 
 const Header2 = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+
+
 
   const handleClick = () => {
     setIsDarkMode(!isDarkMode);
     // Toggle the body class for dark mode
     document.body.classList.toggle("dark-mode", !isDarkMode);
   };
-
+ 
+  const navigateToAuth = () => {
+    if (isAuthenticated) {
+      navigate("/admin-dashboard"); // Navigate to profile page if logged in
+    } else {
+      navigate("/auth"); // Navigate to login page if not logged in
+    }
+  };
   return (
     <>
       <header
@@ -73,7 +87,7 @@ const Header2 = () => {
               {/* Logo */}
               <div className="flex justify-center items-center">
                 <img
-                  src={logo}
+                  src="/logo.png"
                   alt="Logo"
                   className={`w-auto h-24 ${
                     isDarkMode ? "filter invert" : ""
@@ -113,7 +127,7 @@ const Header2 = () => {
               {/* Logo */}
               <div className="flex items-center py-4 mr-3">
                 <img
-                  src="./logo.png"
+                  src="/logo.png"
                   alt="Logo"
                   className={`w-auto h-36 ${
                     isDarkMode ? "filter invert" : ""
@@ -131,16 +145,30 @@ const Header2 = () => {
                       cursor: "pointer",
                     }}
                   >
+
+
+                    
                     <FontAwesomeIcon
                       icon={isDarkMode ? solidLightbulb : regularLightbulb}
                       size="2x"
                       color={isDarkMode ? "yellow" : "black"}
                     />
                   </button>
+
+
+
+
+
                   <div className=" flex items-center ">
-      <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '1.5em' }} />
+
+
+                  <Link to="/cart">
+        <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '1.5em', cursor: 'pointer' }} />
+      </Link>
+
+    
       </div>
-                 <LinkButton/>
+      <LinkButton onClick={navigateToAuth} />
              
                   </div>
                
@@ -186,6 +214,9 @@ const Header2 = () => {
           </div>
         </div>
       </header>
+
+   
+
     </>
   );
 };

@@ -1,43 +1,75 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { useGetProductsQuery } from "../../../redux/features/product/productApi";
+import PricingAndDescription from "../../../components/Cards/PricingAndDescription";
+import MainContent from "../../../components/UI/Discription";
+import Form from "../../../components/Form";
+import References from "../../../components/Cards/References";
+import RelatedGuides from "../../../components/UI/RelatedGuide";
+import FAQ from "../../../components/FAQ/FaqCompony";
+import Testimonial from "../../../components/Review/Testemonial";
+import DocumentsComponent from "../../../components/UI/Doxequired";
 
+const  PartnerShipFirm = () => {
+  const { data, isLoading, isError, error } = useGetProductsQuery();
+  const [pageData, setPageData] = useState(null);
 
-import References from '../../../components/Cards/References'
-import FAQ from '../../../components/FAQ/FaqCompony'
-import Form from '../../../components/Form'
-import Testimonial from '../../../components/Review/Testemonial'
-import MainContent from '../../../components/UI/Discription'
-import DocumentsComponent from '../../../components/UI/Doxequired'
-import RelatedGuides from '../../../components/UI/RelatedGuide'
-import PricingAndDescription from '../../../components/Cards/PricingAndDescription'
+  useEffect(() => {
+    if (data?.success && data.data) {
+      console.log("Fetched Data: ", data.data); // Debugging log
+      const filteredProduct = data.data.find(
+        (product) =>
+          product.title?.toLowerCase().trim() ===
+          "partnership firm".toLowerCase().trim()
+      );
+      setPageData(filteredProduct);
+    }
+  }, [data]);
 
+  if (isLoading) {
+    return <p className="text-center text-gray-500 mt-10">Loading product data...</p>;
+  }
 
+  if (isError) {
+    return (
+      <p className="text-center text-red-500 mt-10">
+        Error loading data: {error?.data?.message || "Something went wrong"}
+      </p>
+    );
+  }
 
-const PartnershipFirm = () => {
+  if (!pageData) {
+    return (
+      <p className="text-center text-gray-500 mt-10">
+        No product data available for "Partnership Firm".
+      </p>
+    );
+  }
+
   return (
     <>
-      {/* Use neutral classes so dark mode CSS can take over */}
       <div className="min-h-screen p-4 sm:p-6">
-        {/* Heading */}
-        <h1 className="text-xs sm:text-3xl font-bold mb-6">
-          Company Registration → Partnership Firm
+        <h1 className="text-xs sm:text-3xl font-bold mb-6 text-gray-800">
+          Company Registration → {pageData.title}
         </h1>
 
-        {/* Content Section */}
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* Left Section */}
-          <div className="w-full lg:flex-1 px-4 sm:px-9 rounded-2xl shadow-all">
+          <div className="w-full lg:flex-1 px-4 sm:px-9 rounded-2xl shadow-md ">
             {/* Image */}
             <img
-              src="/images.jpg"
-              alt="Tag 1"
-              className="w-full h-auto rounded shadow-all mb-6 mt-5"
+              src={
+                pageData.image?.trim()
+                  ? pageData.image
+                  : "https://via.placeholder.com/600x300?text=No+Image"
+              }
+              alt={pageData.title || "Product Image"}
+              className="w-full h-auto rounded shadow mb-6 mt-5"
             />
 
-            {/* Cards */}
-           <PricingAndDescription/>
+            {/* Pricing and Description Cards */}
+            <PricingAndDescription pageData={pageData} />
 
             {/* Main Content */}
-            <MainContent />
+            <MainContent mainContent={pageData.mainContent} />
           </div>
 
           {/* Right Section */}
@@ -49,15 +81,16 @@ const PartnershipFirm = () => {
         </div>
       </div>
 
-      {/* Additional Sections */}
       <div className="p-4 sm:p-6">
-        <DocumentsComponent/>
+        {pageData.documentRequirements && (
+          <DocumentsComponent documentRequirements={pageData.documentRequirements} />
+        )}
       </div>
+
       <FAQ />
       <Testimonial />
     </>
   );
 };
 
-
-export default PartnershipFirm
+export default PartnerShipFirm;

@@ -120,7 +120,7 @@ const Header = () => {
                 {/* Dropdown Menu */}
                 {hoveredMenu === menuItem.name && menuItem.subMenu.length > 0 && (
                   <div className="absolute right-0 top-full mt-1 w-64 bg-[#032845] shadow-md rounded-md">
-                    <ul className="py-2">
+                    <ul className="py-2 px-1">
                       {menuItem.subMenu.map((subItem, subIndex) => (
                         <li
                           key={subIndex}
@@ -141,21 +141,23 @@ const Header = () => {
 
                           {/* Nested Submenu */}
                           {hoveredSubMenu === subItem.name && subItem.subMenu.length > 0 && (
-                            <div className="absolute left-full ml-1 top-0 w-64 bg-[#032845] shadow-md rounded-md">
-                              <ul className="py-2">
-                                {subItem.subMenu.map((nestedItem, nestedIndex) => (
-                                  <li
-                                    key={nestedIndex}
-                                    onMouseEnter={() => handleMouseEnterNestedSubMenu(nestedItem.name)}
-                                    onMouseLeave={handleMouseLeaveNestedSubMenu}
-                                  >
-                                   <button
-  onClick={(e) => handleNestedMenuClick(nestedItem, e)}
-  className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845]"
->
-                                      {nestedItem.name}
-                                      {nestedItem.subMenu && nestedItem.subMenu.length > 0 }
-                                    </button>
+                  <div className="absolute left-full ml-2 top-0 w-64 bg-[#032845] shadow-md rounded-md z-50">
+                    <ul className="py-2">
+                      {subItem.subMenu.map((nestedItem, nestedIndex) => (
+                        <li
+                          key={nestedIndex}
+                          onMouseEnter={() => handleMouseEnterNestedSubMenu(nestedItem.name)}
+                          onMouseLeave={handleMouseLeaveNestedSubMenu}
+                        >
+                          <button
+                            onClick={(e) => handleNestedMenuClick(nestedItem, e)}
+                            className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845]"
+                          >
+                            {nestedItem.name}
+                            {nestedItem.subMenu && nestedItem.subMenu.length > 0 && (
+                              <IoIosArrowForward className="absolute right-4 bottom-80 transform -translate-y-1/2" />
+                            )}
+                          </button>
 
                                     {/* Second-Level Nested Submenu */}
 

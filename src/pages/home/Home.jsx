@@ -4,20 +4,21 @@ import SlidingImages from './SliderImage'
 import AboutUs from './AboutUs'
 import PracticeAreas from './PracticeSection'
 import WhyChooseUs from './ChooseUs'
-import Testimonials from './Testimonial'
+
 import Features from './Features'
 import Heighlights from './Heighlights'
+import Testimonial from '../../components/Review/Testemonial'
 const Home = () => {
   return (
     <>
+  <div  >   <SlidingImages/></div>
   
-    <SlidingImages/>
     <AboutUs/>
     <PracticeAreas/>
     <WhyChooseUs/>
     <Features/>
 <Heighlights/>
-    <Testimonials/>
+    <Testimonial/>
     </>
   )
 }

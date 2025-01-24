@@ -1,11 +1,9 @@
 import React from "react";
 
 const StarRating = ({ rating }) => {
-  const stars = Array.from({ length: 5 });
-
   return (
     <div className="flex space-x-1">
-      {stars.map((_, index) => (
+      {Array.from({ length: 5 }).map((_, index) => (
         <span
           key={index}
           className={`text-lg sm:text-xl ${

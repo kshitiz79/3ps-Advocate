@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import GooglePlayIcon from "./../../public/2.jpg"; // Adjust path as needed
+import { useSubmitFormMutation } from "./../redux/features/form/formapi"; // Replace with actual API slice path
+import GooglePlayIcon from "./../../public/contact.png"; // Adjust path as needed
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Form = () => {
     gstin: false,
   });
 
+  const [submitForm, { isLoading, isError, isSuccess, error }] = useSubmitFormMutation();
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -17,14 +20,20 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    try {
+      await submitForm(formData).unwrap();
+      alert("Form submitted successfully!");
+      setFormData({ name: "", email: "", phone: "", gstin: false }); // Reset form
+    } catch (err) {
+      console.error("Form submission failed:", err);
+    }
   };
 
   return (
-    <div className="  flex items-center justify-center  ">
-      <div className=" shadow-lg rounded-lg w-full max-w-sm border border-gray-200">
+    <div className="flex items-center justify-center">
+      <div className="shadow-lg rounded-lg w-full max-w-sm border border-gray-200">
         {/* Image Section */}
         <div>
           <img
@@ -65,7 +74,7 @@ const Form = () => {
 
             {/* Phone Input */}
             <div className="mb-4 flex">
-              <div className="flex items-center px-3 bg-gray-100 border border-r-0 rounded-l-lg">
+              <div className="flex items-center px-3  border border-r-0 rounded-l-lg">
                 <span className="text-gray-500">+91</span>
               </div>
               <input
@@ -74,7 +83,7 @@ const Form = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Phone"
-                className="w-full px-4 py-2 border rounded-r-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border rounded-r-lg border-l-lg border-r-0 shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 required
               />
             </div>
@@ -97,9 +106,20 @@ const Form = () => {
             <button
               type="submit"
               className="w-full bg-sky-900 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              disabled={isLoading}
             >
-              Get Started
+              {isLoading ? "Submitting..." : "Get Started"}
             </button>
+
+            {/* Success and Error Messages */}
+            {isSuccess && (
+              <p className="text-green-600 text-center mt-4">Form submitted successfully!</p>
+            )}
+            {isError && (
+              <p className="text-red-600 text-center mt-4">
+                Error: {error?.data?.message || "Something went wrong"}
+              </p>
+            )}
           </form>
         </div>
       </div>

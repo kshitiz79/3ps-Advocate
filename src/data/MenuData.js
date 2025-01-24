@@ -135,7 +135,7 @@ const menuItems = [
     subMenu: [
       {
         name: "Trademark",
-        path: "/intellectual-property/trademark",
+
         subMenu: [
           {
             name: "Trademark Filing",
@@ -147,7 +147,7 @@ const menuItems = [
           },
           {
             name: "Opposition/Rectification",
-            path: "/intellectual-property/trademark/opposition-rectification",
+            
             subMenu: [
               {
                 name: "Filing Opposition",
