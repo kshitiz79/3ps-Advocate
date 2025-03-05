@@ -1,29 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Header2 from "./Header2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import menuItems from "./../data/MenuData";
+
 const Header = () => {
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
   const [hoveredNestedSubMenu, setHoveredNestedSubMenu] = useState(null);
   const [activeMenu, setActiveMenu] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  let hoverTimeout;
+  const hoverTimeoutRef = useRef(null);
 
   const navigate = useNavigate();
 
   const handleMouseEnterMenu = (menu) => {
-    clearTimeout(hoverTimeout);
+    clearTimeout(hoverTimeoutRef.current);
     setHoveredMenu(menu);
     setHoveredSubMenu(null);
     setHoveredNestedSubMenu(null);
   };
 
   const handleMouseLeaveMenu = () => {
-    hoverTimeout = setTimeout(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
       setHoveredMenu(null);
       setHoveredSubMenu(null);
       setHoveredNestedSubMenu(null);
@@ -31,49 +32,49 @@ const Header = () => {
   };
 
   const handleMouseEnterSubMenu = (subMenu) => {
-    clearTimeout(hoverTimeout);
+    clearTimeout(hoverTimeoutRef.current);
     setHoveredSubMenu(subMenu);
     setHoveredNestedSubMenu(null);
   };
 
   const handleMouseLeaveSubMenu = () => {
-    hoverTimeout = setTimeout(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
       setHoveredSubMenu(null);
       setHoveredNestedSubMenu(null);
     }, 200);
   };
 
   const handleMouseEnterNestedSubMenu = (nestedSubMenu) => {
-    clearTimeout(hoverTimeout);
+    clearTimeout(hoverTimeoutRef.current);
     setHoveredNestedSubMenu(nestedSubMenu);
   };
 
   const handleMouseLeaveNestedSubMenu = () => {
-    hoverTimeout = setTimeout(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
       setHoveredNestedSubMenu(null);
     }, 200);
   };
 
   const handleMenuClick = (menuItem, e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
     if (menuItem.subMenu.length > 0) {
       setHoveredMenu(menuItem.name === hoveredMenu ? null : menuItem.name);
     } else {
       navigate(menuItem.path);
-      setTimeout(() => setHoveredMenu(null), 300); // Close menu after slight delay
+      setTimeout(() => setHoveredMenu(null), 300);
     }
   };
-  
+
   const handleSubMenuClick = (subItem, e) => {
     e.preventDefault();
     if (subItem.subMenu.length > 0) {
       setHoveredSubMenu(subItem.name === hoveredSubMenu ? null : subItem.name);
     } else {
       navigate(subItem.path);
-      setTimeout(() => setHoveredSubMenu(null), 300); // Close submenu after delay
+      setTimeout(() => setHoveredSubMenu(null), 300);
     }
   };
-  
+
   const handleNestedMenuClick = (nestedItem, e) => {
     e.preventDefault();
     navigate(nestedItem.path);
@@ -81,10 +82,8 @@ const Header = () => {
       setHoveredNestedSubMenu(null);
       setHoveredSubMenu(null);
       setHoveredMenu(null);
-    }, 30); // Close all menus after delay
+    }, 30);
   };
-
-
 
   return (
     <>
@@ -93,11 +92,11 @@ const Header = () => {
         <div className="container mx-auto px-4 flex justify-center">
           {/* Mobile Menu */}
           <button
-          className="text-white md:hidden focus:outline-none py-5"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <FontAwesomeIcon icon={faBars} size="2x" />
-        </button>
+            className="text-white md:hidden focus:outline-none py-5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <FontAwesomeIcon icon={faBars} size="2x" />
+          </button>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -108,14 +107,14 @@ const Header = () => {
                 onMouseEnter={() => handleMouseEnterMenu(menuItem.name)}
                 onMouseLeave={handleMouseLeaveMenu}
               >
-              <button
-  onClick={(e) => handleMenuClick(menuItem, e)}
-  className={`text-white focus:outline-none ${
-    hoveredMenu === menuItem.name ? "text-[#c7a55e]" : "hover:text-[#c7a55e]"
-  } py-5`}
->
-  {menuItem.name}
-</button>
+                <button
+                  onClick={(e) => handleMenuClick(menuItem, e)}
+                  className={`text-white focus:outline-none ${
+                    hoveredMenu === menuItem.name ? "text-[#c7a55e]" : "hover:text-[#c7a55e]"
+                  } py-5`}
+                >
+                  {menuItem.name}
+                </button>
 
                 {/* Dropdown Menu */}
                 {hoveredMenu === menuItem.name && menuItem.subMenu.length > 0 && (
@@ -129,9 +128,8 @@ const Header = () => {
                           onMouseLeave={handleMouseLeaveSubMenu}
                         >
                           <button
-                              onClick={(e) => handleSubMenuClick(subItem, e)}
+                            onClick={(e) => handleSubMenuClick(subItem, e)}
                             className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845]"
-                        
                           >
                             {subItem.name}
                             {subItem.subMenu.length > 0 && (
@@ -141,47 +139,41 @@ const Header = () => {
 
                           {/* Nested Submenu */}
                           {hoveredSubMenu === subItem.name && subItem.subMenu.length > 0 && (
-                  <div className="absolute left-full ml-2 top-0 w-64 bg-[#032845] shadow-md rounded-md z-50">
-                    <ul className="py-2">
-                      {subItem.subMenu.map((nestedItem, nestedIndex) => (
-                        <li
-                          key={nestedIndex}
-                          onMouseEnter={() => handleMouseEnterNestedSubMenu(nestedItem.name)}
-                          onMouseLeave={handleMouseLeaveNestedSubMenu}
-                        >
-                          <button
-                            onClick={(e) => handleNestedMenuClick(nestedItem, e)}
-                            className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845]"
-                          >
-                            {nestedItem.name}
-                            {nestedItem.subMenu && nestedItem.subMenu.length > 0 && (
-                              <IoIosArrowForward className="absolute right-4 bottom-80 transform -translate-y-1/2" />
-                            )}
-                          </button>
+                            <div className="absolute left-full ml-2 top-0 w-64 bg-[#032845] shadow-md rounded-md z-50">
+                              <ul className="py-2">
+                                {subItem.subMenu.map((nestedItem, nestedIndex) => (
+                                  <li
+                                    key={nestedIndex}
+                                    onMouseEnter={() => handleMouseEnterNestedSubMenu(nestedItem.name)}
+                                    onMouseLeave={handleMouseLeaveNestedSubMenu}
+                                  >
+                                    <button
+                                      onClick={(e) => handleNestedMenuClick(nestedItem, e)}
+                                      className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845]"
+                                    >
+                                      {nestedItem.name}
+                                      {nestedItem.subMenu && nestedItem.subMenu.length > 0 && (
+                                        <IoIosArrowForward className="absolute right-4 bottom-80 transform -translate-y-1/2" />
+                                      )}
+                                    </button>
 
                                     {/* Second-Level Nested Submenu */}
-
-
-
                                     {hoveredNestedSubMenu === nestedItem.name &&
                                       nestedItem.subMenu &&
                                       nestedItem.subMenu.length > 0 && (
                                         <div className="absolute left-full ml-1 top-0 w-64 bg-[#032845] shadow-md rounded-md">
-                                        <ul className="py-2">
-                                          {nestedItem.subMenu.map((secondNestedItem, secondNestedIndex) => (
-                                            <li key={secondNestedIndex}>
-                                              <button
-                                                className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845] relative"
-                                                onClick={() => navigate(secondNestedItem.path)}
-                                              >
-                                                {secondNestedItem.name}
-                                    
-                                                {/* Add Arrow Icon if Submenu Exists */}
-                                                {secondNestedItem.subMenu?.length > 0 && (
-                                                  <IoIosArrowForward className="absolute right-4 top-1/2 transform -translate-y-1/2" />
-                                                )}
-                                              </button>
-
+                                          <ul className="py-2">
+                                            {nestedItem.subMenu.map((secondNestedItem, secondNestedIndex) => (
+                                              <li key={secondNestedIndex}>
+                                                <button
+                                                  className="block w-full text-left px-4 py-2 text-white hover:bg-gray-100 hover:text-[#032845] relative"
+                                                  onClick={() => navigate(secondNestedItem.path)}
+                                                >
+                                                  {secondNestedItem.name}
+                                                  {secondNestedItem.subMenu?.length > 0 && (
+                                                    <IoIosArrowForward className="absolute right-4 top-1/2 transform -translate-y-1/2" />
+                                                  )}
+                                                </button>
                                               </li>
                                             ))}
                                           </ul>

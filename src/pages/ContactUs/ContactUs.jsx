@@ -60,9 +60,11 @@ export const ContactUs = () => {
           </div>
 
           {/* Contact Form Section */}
-          <div className="w-full md:w-1/2  rounded-lg ">
-            <Form />
-          </div>
+          <div className="w-full md:w-1/2 rounded-lg">
+  <Form hideGSTIN={true} />
+</div>
+
+
         </div>
 
         {/* Footer Note */}

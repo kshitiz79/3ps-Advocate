@@ -8,7 +8,7 @@ const Highlights = ({ isDarkMode }) => {
       darkImage: "/Flat/flat6-dark.png",
     },
     {
-      title: "4.5* Google Rating",
+      title: "4.9* Google Rating",
       image: "/Flat/flat7.png",
       darkImage: "/Flat/flat7-dark.png",
     },

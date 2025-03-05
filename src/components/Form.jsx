@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSubmitFormMutation } from "./../redux/features/form/formapi"; // Replace with actual API slice path
 import GooglePlayIcon from "./../../public/contact.png"; // Adjust path as needed
 
-const Form = () => {
+const Form = ({ hideGSTIN = false }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -74,7 +74,7 @@ const Form = () => {
 
             {/* Phone Input */}
             <div className="mb-4 flex">
-              <div className="flex items-center px-3  border border-r-0 rounded-l-lg">
+              <div className="flex items-center px-3 border border-r-0 rounded-l-lg">
                 <span className="text-gray-500">+91</span>
               </div>
               <input
@@ -83,24 +83,27 @@ const Form = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Phone"
-                className="w-full px-4 py-2 border rounded-r-lg border-l-lg border-r-0 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-2 border rounded-r-lg border-l-none shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 required
               />
             </div>
 
-            {/* GSTIN Checkbox */}
-            <div className="mb-4 flex items-center">
-              <input
-                type="checkbox"
-                name="gstin"
-                checked={formData.gstin}
-                onChange={handleChange}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-              />
-              <label htmlFor="gstin" className="ml-2 text-sm text-gray-700">
-                Enter GSTIN to get 18% GST Credit
-              </label>
-            </div>
+            {/* GSTIN Checkbox - Conditionally Rendered */}
+            {!hideGSTIN && (
+              <div className="mb-4 flex items-center">
+                <input
+                  type="checkbox"
+                  id="gstin"
+                  name="gstin"
+                  checked={formData.gstin}
+                  onChange={handleChange}
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <label htmlFor="gstin" className="ml-2 text-sm text-gray-700">
+                  Enter GSTIN to get 18% GST Credit
+                </label>
+              </div>
+            )}
 
             {/* Submit Button */}
             <button
